@@ -19,6 +19,8 @@ import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import { BlockNoteToolbar } from "./BlockNoteToolbar";
 import MarkdownIt from "markdown-it";
+import mk from "markdown-it-katex";
+import "katex/dist/katex.min.css";
 
 const md = new MarkdownIt({
   html: true,
@@ -26,7 +28,7 @@ const md = new MarkdownIt({
   linkify: true,
   typographer: true,
   tables: true,
-});
+}).use(mk);
 
 export interface BlockNoteProps {
   value?: string;
@@ -118,6 +120,8 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
                 .join("\n") + "\n"
             );
           })
+          .replace(/<span class="math-inline">(.*?)<\/span>/g, "$$$1$$")
+          .replace(/<div class="math-block">(.*?)<\/div>/g, "$$\n$1\n$$")
           .replace(/\n\n+/g, "\n\n")
           .trim();
         onChange?.(markdown);
@@ -133,13 +137,14 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
         const text = clipboardData.getData("text/plain");
         if (!text) return false;
 
-        // Check if the pasted content looks like markdown
+        // Check if the pasted content looks like markdown or math
         const isMarkdown =
           /^[#*_`>-]/.test(text) ||
           /\n[#*_`>-]/.test(text) ||
           /\|.*\|/.test(text);
+        const isMath = /\$\$.*\$\$/.test(text) || /\$.*\$/.test(text);
 
-        if (isMarkdown) {
+        if (isMarkdown || isMath) {
           event.preventDefault();
           const html = md.render(text);
           editor?.commands.setContent(html);

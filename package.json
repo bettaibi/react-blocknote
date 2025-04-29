@@ -62,7 +62,9 @@
     "@tiptap/react": "^2.11.7",
     "@tiptap/starter-kit": "^2.11.7",
     "@types/markdown-it": "^14.1.2",
-    "markdown-it": "^14.1.0"
+    "katex": "^0.16.22",
+    "markdown-it": "^14.1.0",
+    "markdown-it-katex": "^2.0.3"
   },
   "devDependencies": {
     "@types/react": "^19.1.2",

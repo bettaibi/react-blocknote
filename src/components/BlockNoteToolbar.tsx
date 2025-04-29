@@ -86,6 +86,68 @@ export const BlockNoteToolbar: React.FC<BlockNoteToolbarProps> = ({
       >
         Right
       </button>
+
+      <div className="blocknote-toolbar-group">
+        <button
+          onClick={() =>
+            editor
+              .chain()
+              .focus()
+              .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+              .run()
+          }
+        >
+          Insert Table
+        </button>
+        <button
+          onClick={() => editor.chain().focus().addColumnBefore().run()}
+          disabled={!editor.can().addColumnBefore()}
+        >
+          Add Column Before
+        </button>
+        <button
+          onClick={() => editor.chain().focus().addColumnAfter().run()}
+          disabled={!editor.can().addColumnAfter()}
+        >
+          Add Column After
+        </button>
+        <button
+          onClick={() => editor.chain().focus().deleteColumn().run()}
+          disabled={!editor.can().deleteColumn()}
+        >
+          Delete Column
+        </button>
+        <button
+          onClick={() => editor.chain().focus().addRowBefore().run()}
+          disabled={!editor.can().addRowBefore()}
+        >
+          Add Row Before
+        </button>
+        <button
+          onClick={() => editor.chain().focus().addRowAfter().run()}
+          disabled={!editor.can().addRowAfter()}
+        >
+          Add Row After
+        </button>
+        <button
+          onClick={() => editor.chain().focus().deleteRow().run()}
+          disabled={!editor.can().deleteRow()}
+        >
+          Delete Row
+        </button>
+        <button
+          onClick={() => editor.chain().focus().deleteTable().run()}
+          disabled={!editor.can().deleteTable()}
+        >
+          Delete Table
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleHeaderCell().run()}
+          className={editor.isActive("tableHeader") ? "is-active" : ""}
+        >
+          Toggle Header
+        </button>
+      </div>
     </div>
   );
 };

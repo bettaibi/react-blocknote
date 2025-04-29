@@ -13,10 +13,20 @@ import Superscript from "@tiptap/extension-superscript";
 import TextStyle from "@tiptap/extension-text-style";
 import Color from "@tiptap/extension-color";
 import Typography from "@tiptap/extension-typography";
+import Table from "@tiptap/extension-table";
+import TableRow from "@tiptap/extension-table-row";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
 import { BlockNoteToolbar } from "./BlockNoteToolbar";
 import MarkdownIt from "markdown-it";
 
-const md = new MarkdownIt();
+const md = new MarkdownIt({
+  html: true,
+  breaks: true,
+  linkify: true,
+  typographer: true,
+  tables: true,
+});
 
 export interface BlockNoteProps {
   value?: string;
@@ -60,6 +70,12 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
       TextStyle,
       Color,
       Typography,
+      Table.configure({
+        resizable: true,
+      }),
+      TableRow,
+      TableCell,
+      TableHeader,
     ],
     content: outputFormat === "markdown" ? md.render(value) : value,
     editable: !readOnly,
@@ -83,12 +99,55 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
           .replace(/<blockquote>(.*?)<\/blockquote>/g, "> $1\n")
           .replace(/<a href="(.*?)">(.*?)<\/a>/g, "[$2]($1)")
           .replace(/<img src="(.*?)".*?>/g, "![]($1)")
+          .replace(/<table>(.*?)<\/table>/gs, (match, content) => {
+            const rows = content.match(/<tr>(.*?)<\/tr>/gs) || [];
+            return (
+              rows
+                .map((row) => {
+                  const cells = row.match(/<t[dh]>(.*?)<\/t[dh]>/gs) || [];
+                  return (
+                    "| " +
+                    cells
+                      .map((cell) =>
+                        cell.replace(/<t[dh]>(.*?)<\/t[dh]>/s, "$1").trim()
+                      )
+                      .join(" | ") +
+                    " |"
+                  );
+                })
+                .join("\n") + "\n"
+            );
+          })
           .replace(/\n\n+/g, "\n\n")
           .trim();
         onChange?.(markdown);
       } else {
         onChange?.(html);
       }
+    },
+    editorProps: {
+      handlePaste: (view, event) => {
+        const clipboardData = event.clipboardData;
+        if (!clipboardData) return false;
+
+        const text = clipboardData.getData("text/plain");
+        if (!text) return false;
+
+        // Check if the pasted content looks like markdown
+        const isMarkdown =
+          /^[#*_`>-]/.test(text) ||
+          /\n[#*_`>-]/.test(text) ||
+          /\|.*\|/.test(text);
+
+        if (isMarkdown) {
+          event.preventDefault();
+          const html = md.render(text);
+          editor?.commands.setContent(html);
+          return true;
+        }
+
+        return false;
+      },
     },
   });
 

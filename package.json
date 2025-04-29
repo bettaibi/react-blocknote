@@ -40,6 +40,13 @@
   "license": "MIT",
   "description": "A React component library for rich text editing",
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.11",
+    "@radix-ui/react-dropdown-menu": "^2.1.12",
+    "@radix-ui/react-hover-card": "^1.1.11",
+    "@radix-ui/react-label": "^2.1.4",
+    "@radix-ui/react-separator": "^1.1.4",
+    "@radix-ui/react-slot": "^1.2.0",
+    "@radix-ui/react-toast": "^1.2.11",
     "@tiptap/extension-code-block-lowlight": "^2.11.7",
     "@tiptap/extension-color": "^2.11.7",
     "@tiptap/extension-highlight": "^2.11.7",
@@ -63,6 +70,7 @@
     "@tiptap/starter-kit": "^2.11.7",
     "@types/markdown-it": "^14.1.2",
     "katex": "^0.16.22",
+    "lucide-react": "^0.503.0",
     "markdown-it": "^14.1.0",
     "markdown-it-katex": "^2.0.3"
   },

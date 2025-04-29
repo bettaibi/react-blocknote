@@ -21,6 +21,7 @@ import { BlockNoteToolbar } from "./BlockNoteToolbar";
 import MarkdownIt from "markdown-it";
 import mk from "markdown-it-katex";
 import "katex/dist/katex.min.css";
+import { BlockNoteBubbleMenu } from "./BlockNoteBubbleMenu";
 
 const md = new MarkdownIt({
   html: true,
@@ -160,6 +161,7 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
     <div className={`blocknote-editor ${className}`}>
       {showToolbar && <BlockNoteToolbar editor={editor} />}
       <EditorContent editor={editor} />
+      <BlockNoteBubbleMenu editor={editor} />
     </div>
   );
 };

@@ -1,4 +1,3 @@
-import React from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
@@ -22,19 +21,43 @@ import { common, createLowlight } from "lowlight";
 import js from "highlight.js/lib/languages/javascript";
 import python from "highlight.js/lib/languages/python";
 import csharp from "highlight.js/lib/languages/csharp";
-import "highlight.js/styles/github.css";
 import { BlockNoteToolbar } from "./BlockNoteToolbar";
 import MarkdownIt from "markdown-it";
-import mk from "markdown-it-katex";
-import "katex/dist/katex.min.css";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
 import { BlockNoteBubbleMenu } from "./BlockNoteBubbleMenu";
+import { htmlToMarkdown } from "../utils/htmlToMarkdown";
+import "highlight.js/styles/github.css";
+import "katex/dist/katex.min.css";
 
+// Markdown parser with math support
 const md = new MarkdownIt({
   html: true,
   breaks: true,
   linkify: true,
   typographer: true,
-}).use(mk);
+});
+
+// Function to process math expressions with remark/rehype
+const processMathInMarkdown = (content: string): string => {
+  try {
+    const result = unified()
+      .use(remarkParse)
+      .use(remarkMath)
+      .use(remarkRehype)
+      .use(rehypeKatex)
+      .use(rehypeStringify)
+      .processSync(content);
+    return result.toString();
+  } catch (error) {
+    console.error("Error processing math in markdown:", error);
+    return md.render(content); // Fallback to regular markdown-it
+  }
+};
 
 // Create lowlight instance and register languages
 const lowlight = createLowlight(common);
@@ -52,7 +75,7 @@ export interface BlockNoteProps {
   outputFormat?: "html" | "markdown";
 }
 
-export const BlockNote: React.FC<BlockNoteProps> = ({
+export function BlockNote({
   value = "",
   onChange,
   placeholder = "Start typing or paste a markdown file...",
@@ -60,7 +83,7 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
   readOnly = false,
   showToolbar = true,
   outputFormat = "html",
-}) => {
+}: BlockNoteProps) {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -97,47 +120,18 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
       TableCell,
       TableHeader,
     ],
-    content: outputFormat === "markdown" ? md.render(value) : value,
+    content:
+      outputFormat === "markdown"
+        ? value.includes("$")
+          ? processMathInMarkdown(value)
+          : md.render(value)
+        : value,
     editable: !readOnly,
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
       if (outputFormat === "markdown") {
         // Convert HTML to Markdown-like format
-        const markdown = html
-          .replace(/<h1>(.*?)<\/h1>/g, "# $1\n")
-          .replace(/<h2>(.*?)<\/h2>/g, "## $1\n")
-          .replace(/<h3>(.*?)<\/h3>/g, "### $1\n")
-          .replace(/<p>(.*?)<\/p>/g, "$1\n")
-          .replace(/<strong>(.*?)<\/strong>/g, "**$1**")
-          .replace(/<em>(.*?)<\/em>/g, "*$1*")
-          .replace(/<u>(.*?)<\/u>/g, "_$1_")
-          .replace(/<code>(.*?)<\/code>/g, "`$1`")
-          .replace(/<pre>(.*?)<\/pre>/g, "```\n$1\n```")
-          .replace(/<ul>(.*?)<\/ul>/g, "$1")
-          .replace(/<ol>(.*?)<\/ol>/g, "$1")
-          .replace(/<li>(.*?)<\/li>/g, "- $1\n")
-          .replace(/<blockquote>(.*?)<\/blockquote>/g, "> $1\n")
-          .replace(/<a href="(.*?)">(.*?)<\/a>/g, "[$2]($1)")
-          .replace(/<img src="(.*?)".*?>/g, "![]($1)")
-          .replace(/<table>(.*?)<\/table>/gs, (match, content) => {
-            const rows = content.match(/<tr>(.*?)<\/tr>/gs) || [];
-            return rows
-              .map((row: string) => {
-                const cells = row.match(/<t[dh]>(.*?)<\/t[dh]>/gs) || [];
-                return "| " +
-                cells
-                  .map((cell: string) =>
-                    cell.replace(/<t[dh]>(.*?)<\/t[dh]>/s, "$1").trim()
-                  )
-                  .join(" | ") +
-                " |";
-              })
-              .join("\n") + "\n";
-          })
-          .replace(/<span class="math-inline">(.*?)<\/span>/g, "$$$1$$")
-          .replace(/<div class="math-block">(.*?)<\/div>/g, "$$\n$1\n$$")
-          .replace(/\n\n+/g, "\n\n")
-          .trim();
+        const markdown = htmlToMarkdown(html);
         onChange?.(markdown);
       } else {
         onChange?.(html);
@@ -160,8 +154,22 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
 
         if (isMarkdown || isMath) {
           event.preventDefault();
-          const html = md.render(text);
+
+          let html;
+          if (isMath) {
+            html = processMathInMarkdown(text);
+          } else {
+            html = md.render(text);
+          }
+
           editor?.commands.setContent(html);
+
+          if (outputFormat === "markdown") {
+            const markdown = htmlToMarkdown(html);
+            onChange?.(markdown);
+          } else {
+            onChange?.(html);
+          }
           return true;
         }
 
@@ -172,9 +180,9 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
 
   return (
     <div className={`blocknote-editor ${className}`}>
-      {showToolbar && <BlockNoteToolbar editor={editor} />}
       <EditorContent editor={editor} />
+      {showToolbar && <BlockNoteToolbar editor={editor} />}
       <BlockNoteBubbleMenu editor={editor} />
     </div>
   );
-};
+}

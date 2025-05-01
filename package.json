@@ -26,15 +26,23 @@
   },
   "keywords": [
     "react",
-    "blocknote",
+    "block note",
     "editor",
     "notion",
-    "react blocknote",
+    "react block note",
     "react-blocknote",
     "react-notion",
     "react editor",
     "md editor",
-    "typescript"
+    "typescript editor",
+    "markdown editor",
+    "markdown",
+    "block note editor",
+    "notion editor",
+    "notion like editor",
+    "notion like",
+    "notion like editor",
+    "notion like block note"
   ],
   "author": "Nidhal Bettaibi",
   "license": "MIT",
@@ -82,6 +90,7 @@
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
     "@vitejs/plugin-react": "4.4.1",
+    "typescript": "^5.8.3",
     "vite": "6.3.3"
   },
   "engines": {

@@ -15,7 +15,7 @@ export function htmlToMarkdown(html: string) {
     .replace(/<blockquote>(.*?)<\/blockquote>/g, "> $1\n")
     .replace(/<a href="(.*?)">(.*?)<\/a>/g, "[$2]($1)")
     .replace(/<img src="(.*?)".*?>/g, "![]($1)")
-    .replace(/<table>(.*?)<\/table>/gs, (match, content) => {
+    .replace(/<table>(.*?)<\/table>/gs, (_, content) => {
       const rows = content.match(/<tr>(.*?)<\/tr>/gs) || [];
       return (
         rows

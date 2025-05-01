@@ -10,9 +10,9 @@
   "module": "./dist/react-blocknote.es.js",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/react-blocknote.es.js",
-      "require": "./dist/react-blocknote.umd.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/react-blocknote.umd.js"
     }
   },
   "scripts": {

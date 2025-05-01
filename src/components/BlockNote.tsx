@@ -28,7 +28,6 @@ const md = new MarkdownIt({
   breaks: true,
   linkify: true,
   typographer: true,
-  tables: true,
 }).use(mk);
 
 export interface BlockNoteProps {
@@ -44,7 +43,7 @@ export interface BlockNoteProps {
 export const BlockNote: React.FC<BlockNoteProps> = ({
   value = "",
   onChange,
-  placeholder = "Start typing...",
+  placeholder = "Start typing or paste a markdown file...",
   className = "",
   readOnly = false,
   showToolbar = true,

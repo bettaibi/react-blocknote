@@ -17,6 +17,12 @@ import Table from "@tiptap/extension-table";
 import TableRow from "@tiptap/extension-table-row";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { common, createLowlight } from "lowlight";
+import js from "highlight.js/lib/languages/javascript";
+import python from "highlight.js/lib/languages/python";
+import csharp from "highlight.js/lib/languages/csharp";
+import "highlight.js/styles/github.css";
 import { BlockNoteToolbar } from "./BlockNoteToolbar";
 import MarkdownIt from "markdown-it";
 import mk from "markdown-it-katex";
@@ -29,6 +35,12 @@ const md = new MarkdownIt({
   linkify: true,
   typographer: true,
 }).use(mk);
+
+// Create lowlight instance and register languages
+const lowlight = createLowlight(common);
+lowlight.register("javascript", js);
+lowlight.register("python", python);
+lowlight.register("csharp", csharp);
 
 export interface BlockNoteProps {
   value?: string;
@@ -51,7 +63,13 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
 }) => {
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        codeBlock: false, // Disable the default code block
+      }),
+      CodeBlockLowlight.configure({
+        lowlight,
+        defaultLanguage: "javascript",
+      }),
       Placeholder.configure({
         placeholder,
       }),
@@ -105,12 +123,12 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
             const rows = content.match(/<tr>(.*?)<\/tr>/gs) || [];
             return (
               rows
-                .map((row) => {
+                .map((row: string) => {
                   const cells = row.match(/<t[dh]>(.*?)<\/t[dh]>/gs) || [];
                   return (
                     "| " +
                     cells
-                      .map((cell) =>
+                      .map((cell: string) =>
                         cell.replace(/<t[dh]>(.*?)<\/t[dh]>/s, "$1").trim()
                       )
                       .join(" | ") +

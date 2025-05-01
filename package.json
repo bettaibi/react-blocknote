@@ -13,11 +13,21 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/react-blocknote.es.js",
       "require": "./dist/react-blocknote.umd.js"
-    }
+    },
+    "./styles.css": "./dist/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bettaibi/react-blocknote"
+  },
+  "homepage": "https://github.com/bettaibi/react-blocknote",
+  "bugs": {
+    "url": "https://github.com/bettaibi/react-blocknote/issues"
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "prepare": "npm run build",
     "preview": "vite preview"
   },
   "peerDependencies": {
@@ -26,27 +36,26 @@
   },
   "keywords": [
     "react",
-    "block note",
+    "blocknote",
     "editor",
     "notion",
-    "react block note",
+    "react blocknote",
     "react-blocknote",
     "react-notion",
     "react editor",
     "md editor",
-    "typescript editor",
+    "typescript",
     "markdown editor",
     "markdown",
-    "block note editor",
-    "notion editor",
-    "notion like editor",
-    "notion like",
-    "notion like editor",
-    "notion like block note"
+    "rich text editor",
+    "tiptap",
+    "wysiwyg",
+    "katex",
+    "math"
   ],
   "author": "Nidhal Bettaibi",
   "license": "MIT",
-  "description": "A React component library for rich text editing",
+  "description": "A modern, versatile rich text editor component for React applications with an elegant UI and Notion-like functionality",
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "2.1.12",
     "@radix-ui/react-popover": "1.1.11",
@@ -87,14 +96,18 @@
   },
   "devDependencies": {
     "@types/highlight.js": "9.12.4",
+    "@types/node": "^22.15.3",
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
     "@vitejs/plugin-react": "4.4.1",
-    "typescript": "^5.8.3",
+    "typescript": "5.3.3",
     "vite": "6.3.3"
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "engineStrict": true
+  "engineStrict": true,
+  "publishConfig": {
+    "access": "public"
+  }
 }

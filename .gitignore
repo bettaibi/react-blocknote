@@ -1,2 +1,9 @@
 node_modules
 dist
+*.tgz
+*.tar.gz
+*.zip
+*.tar.xz
+*.tar.bz2
+*.tar.7z
+*.tar.Z

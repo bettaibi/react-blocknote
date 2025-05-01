@@ -1,0 +1,16 @@
+# Source files
+src/example
+
+# Development configs
+.vscode
+.github
+.gitignore
+.npmrc
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+
+# Build files
+node_modules
+.DS_Store
+*.log 

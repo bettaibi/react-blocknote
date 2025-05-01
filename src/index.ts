@@ -1,3 +1,4 @@
+// Export components
 export { BlockNote } from "./features/BlockNote/components/BlockNote";
 export type { BlockNoteProps } from "./features/BlockNote/components/BlockNote";
 export * from "./features/BlockNote/utils/htmlToMarkdown";

@@ -2,6 +2,10 @@
 
 A modern, versatile rich text editor component for React applications with an elegant UI and Notion-like functionality.
 
+[![GitHub stars](https://img.shields.io/github/stars/bettaibi/react-blocknote.svg?style=social&label=Star&maxAge=2592000)](https://github.com/bettaibi/react-blocknote)
+
+> ⭐ If you find this project useful or interesting, please consider giving it a star on GitHub! Your support helps us grow and improve the library for everyone.
+
 ## Features
 
 - 🎨 Elegant & modern UI with floating toolbar and bubble menu
@@ -22,7 +26,19 @@ A modern, versatile rich text editor component for React applications with an el
 npm install @bettaibi/react-blocknote
 ```
 
-This package uses exact dependency versions to ensure consistent behavior across installations.
+### Peer Dependencies
+
+React BlockNote has a few peer dependencies that need to be installed:
+
+```bash
+npm install @radix-ui/react-dropdown-menu@2.1.12 @radix-ui/react-popover@1.1.11 katex@0.16.22
+```
+
+This approach minimizes the number of peer dependencies while maintaining an optimal package size.
+
+### Bundle Size Optimization
+
+For detailed information on how to optimize the bundle size and performance of React BlockNote in your application, please refer to our [Optimization Guide](./OPTIMIZATION.md).
 
 ## Usage
 

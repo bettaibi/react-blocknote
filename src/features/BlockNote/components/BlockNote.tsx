@@ -72,6 +72,7 @@ export interface BlockNoteProps {
   className?: string;
   readOnly?: boolean;
   showToolbar?: boolean;
+  showBubbleMenu?: boolean;
   outputFormat?: "html" | "markdown";
 }
 
@@ -82,6 +83,7 @@ export function BlockNote({
   className = "",
   readOnly = false,
   showToolbar = true,
+  showBubbleMenu = true,
   outputFormat = "html",
 }: BlockNoteProps) {
   const editor = useEditor({
@@ -95,6 +97,8 @@ export function BlockNote({
       }),
       Placeholder.configure({
         placeholder,
+        emptyEditorClass: "is-editor-empty",
+        emptyNodeClass: "is-empty",
       }),
       TaskList,
       TaskItem.configure({
@@ -182,7 +186,7 @@ export function BlockNote({
     <div className={`blocknote-editor ${className}`}>
       <EditorContent editor={editor} />
       {showToolbar && <BlockNoteToolbar editor={editor} />}
-      <BlockNoteBubbleMenu editor={editor} />
+      {showBubbleMenu && <BlockNoteBubbleMenu editor={editor} />}
     </div>
   );
 }

@@ -2,9 +2,7 @@ import React from "react";
 import { BlockNote } from "../features/BlockNote/components/BlockNote";
 
 export const Example: React.FC = () => {
-  const [value, setValue] = React.useState(
-    "# Welcome to BlockNote!\n\nThis is a rich text editor built with Tiptap."
-  );
+  const [value, setValue] = React.useState("");
 
   return (
     <div style={{ maxWidth: "800px", margin: "2rem auto", padding: "0 1rem" }}>
@@ -12,7 +10,7 @@ export const Example: React.FC = () => {
       <BlockNote
         value={value}
         onChange={setValue}
-        placeholder="Start typing..."
+        placeholder="Start typing or paste a markdown file..."
         showToolbar={true}
         outputFormat="markdown"
       />

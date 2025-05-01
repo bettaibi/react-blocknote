@@ -1,9 +1,163 @@
-import React from "react";
+import React, { useState } from "react";
 import { Editor } from "@tiptap/react";
+import { Image, Link } from "lucide-react";
 
 interface BlockNoteToolbarProps {
   editor: Editor | null;
 }
+
+const LinkButton: React.FC<{ editor: Editor }> = ({ editor }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [url, setUrl] = useState("");
+  const [text, setText] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (url) {
+      editor
+        .chain()
+        .focus()
+        .extendMarkRange("link")
+        .setLink({ href: url })
+        .run();
+      setUrl("");
+      setText("");
+      setIsOpen(false);
+    }
+  };
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={editor.isActive("link") ? "is-active" : ""}
+        title="Insert Link"
+      >
+        <Link size={16} />
+      </button>
+      {isOpen && (
+        <div className="absolute top-full left-0 mt-2 p-4 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                URL
+              </label>
+              <input
+                type="url"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="https://example.com"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Text (optional)
+              </label>
+              <input
+                type="text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="Link text"
+              />
+            </div>
+            <div className="flex justify-end space-x-2 mt-4">
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="px-3 py-1 text-sm text-gray-700 hover:bg-gray-100 rounded"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-3 py-1 text-sm text-white bg-blue-600 hover:bg-blue-700 rounded"
+              >
+                Add Link
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const ImageButton: React.FC<{ editor: Editor }> = ({ editor }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [url, setUrl] = useState("");
+  const [alt, setAlt] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (url) {
+      editor.chain().focus().setImage({ src: url, alt }).run();
+      setUrl("");
+      setAlt("");
+      setIsOpen(false);
+    }
+  };
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={editor.isActive("image") ? "is-active" : ""}
+        title="Insert Image"
+      >
+        <Image size={16} />
+      </button>
+      {isOpen && (
+        <div className="absolute top-full left-0 mt-2 p-4 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Image URL
+              </label>
+              <input
+                type="url"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="https://example.com/image.jpg"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Alt Text (optional)
+              </label>
+              <input
+                type="text"
+                value={alt}
+                onChange={(e) => setAlt(e.target.value)}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="Image description"
+              />
+            </div>
+            <div className="flex justify-end space-x-2 mt-4">
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="px-3 py-1 text-sm text-gray-700 hover:bg-gray-100 rounded"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-3 py-1 text-sm text-white bg-blue-600 hover:bg-blue-700 rounded"
+              >
+                Insert Image
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export const BlockNoteToolbar: React.FC<BlockNoteToolbarProps> = ({
   editor,
@@ -32,6 +186,8 @@ export const BlockNoteToolbar: React.FC<BlockNoteToolbarProps> = ({
       >
         Underline
       </button>
+      <LinkButton editor={editor} />
+      <ImageButton editor={editor} />
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
         className={editor.isActive("heading", { level: 1 }) ? "is-active" : ""}

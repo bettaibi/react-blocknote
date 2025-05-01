@@ -121,22 +121,18 @@ export const BlockNote: React.FC<BlockNoteProps> = ({
           .replace(/<img src="(.*?)".*?>/g, "![]($1)")
           .replace(/<table>(.*?)<\/table>/gs, (match, content) => {
             const rows = content.match(/<tr>(.*?)<\/tr>/gs) || [];
-            return (
-              rows
-                .map((row: string) => {
-                  const cells = row.match(/<t[dh]>(.*?)<\/t[dh]>/gs) || [];
-                  return (
-                    "| " +
-                    cells
-                      .map((cell: string) =>
-                        cell.replace(/<t[dh]>(.*?)<\/t[dh]>/s, "$1").trim()
-                      )
-                      .join(" | ") +
-                    " |"
-                  );
-                })
-                .join("\n") + "\n"
-            );
+            return rows
+              .map((row: string) => {
+                const cells = row.match(/<t[dh]>(.*?)<\/t[dh]>/gs) || [];
+                return "| " +
+                cells
+                  .map((cell: string) =>
+                    cell.replace(/<t[dh]>(.*?)<\/t[dh]>/s, "$1").trim()
+                  )
+                  .join(" | ") +
+                " |";
+              })
+              .join("\n") + "\n";
           })
           .replace(/<span class="math-inline">(.*?)<\/span>/g, "$$$1$$")
           .replace(/<div class="math-block">(.*?)<\/div>/g, "$$\n$1\n$$")

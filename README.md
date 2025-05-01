@@ -10,6 +10,7 @@ A modern, versatile rich text editor component for React applications with an el
 - ✅ Task lists and checklists
 - 📝 Code blocks with syntax highlighting
 - 🔤 Rich text formatting (bold, italic, underline, etc.)
+- 📑 Comprehensive heading options (H1-H6) with dropdown menu
 - 🧮 Math formula support (KaTeX)
 - 📱 Fully responsive design that works on all devices
 - 🎯 Clean, accessible component API
@@ -45,15 +46,16 @@ function MyEditor() {
 
 ## Props
 
-| Prop           | Type                 | Default                                      | Description                                                               |
-| -------------- | -------------------- | -------------------------------------------- | ------------------------------------------------------------------------- |
-| `value`        | string               | `''`                                         | The editor content as HTML or Markdown                                    |
-| `onChange`     | function             | -                                            | Callback fired when content changes. Receives the new content as argument |
-| `placeholder`  | string               | `'Start typing or paste a markdown file...'` | Placeholder text when editor is empty                                     |
-| `className`    | string               | `''`                                         | Additional CSS class for the editor container                             |
-| `readOnly`     | boolean              | `false`                                      | Whether the editor is in read-only mode                                   |
-| `showToolbar`  | boolean              | `true`                                       | Whether to show the toolbar                                               |
-| `outputFormat` | 'html' \| 'markdown' | `'html'`                                     | The format of the output in the onChange callback                         |
+| Prop             | Type                 | Default                                      | Description                                                               |
+| ---------------- | -------------------- | -------------------------------------------- | ------------------------------------------------------------------------- |
+| `value`          | string               | `''`                                         | The editor content as HTML or Markdown                                    |
+| `onChange`       | function             | -                                            | Callback fired when content changes. Receives the new content as argument |
+| `placeholder`    | string               | `'Start typing or paste a markdown file...'` | Placeholder text when editor is empty                                     |
+| `className`      | string               | `''`                                         | Additional CSS class for the editor container                             |
+| `readOnly`       | boolean              | `false`                                      | Whether the editor is in read-only mode                                   |
+| `showToolbar`    | boolean              | `true`                                       | Whether to show the toolbar                                               |
+| `showBubbleMenu` | boolean              | `true`                                       | Whether to show the bubble menu on text selection                         |
+| `outputFormat`   | 'html' \| 'markdown' | `'html'`                                     | The format of the output in the onChange callback                         |
 
 ## Features
 
@@ -62,12 +64,14 @@ function MyEditor() {
 The editor supports a wide range of text formatting options:
 
 - Bold, italic, underline
-- Headings (H1, H2)
+- Headings (H1-H6) via convenient dropdown menu
 - Lists (ordered, unordered, task lists)
-- Text alignment
+- Text alignment (left, center, right)
 - Code blocks with syntax highlighting
 - Subscript and superscript
 - Math formulas using KaTeX
+- Contextual bubble menu that appears on text selection
+- Accessible popover components for links and images
 
 ### Tables
 
@@ -92,10 +96,6 @@ Easily add links and images with a clean, accessible UI.
 
 - React 18.0.0 or higher
 - Node.js 18.0.0 or higher
-
-## License
-
-MIT
 
 ## Credits
 

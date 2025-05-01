@@ -5,17 +5,6 @@
   position: relative;
 }
 
-@keyframes slideInFromBottom {
-  0% {
-    transform: translate(-50%, 100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translate(-50%, -50%);
-    opacity: 1;
-  }
-}
-
 .blocknote-toolbar {
   display: flex;
   overflow-x: auto;
@@ -37,7 +26,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.4s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
   scrollbar-width: thin;
   scrollbar-color: #d4d4d4 transparent;
 }
@@ -61,8 +50,15 @@
   border-radius: 10px;
 }
 
-.blocknote-editor:focus-within .blocknote-toolbar {
-  animation: slideInFromBottom 0.4s ease forwards;
+.blocknote-editor:focus-within .blocknote-toolbar,
+.blocknote-toolbar.is-dropdown-active {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.blocknote-toolbar:hover {
+  transform: translate(-50%, -50%);
   opacity: 1;
   pointer-events: auto;
 }

@@ -16,6 +16,16 @@ export function LinkButton({ editor }: { editor: Editor }) {
         inputRef.current?.focus();
       }, 100);
     }
+
+    // Add or remove the class on the toolbar when popover opens/closes
+    const toolbar = document.querySelector(".blocknote-toolbar");
+    if (toolbar) {
+      if (open) {
+        toolbar.classList.add("is-dropdown-active");
+      } else {
+        toolbar.classList.remove("is-dropdown-active");
+      }
+    }
   }, [open]);
 
   const handleSubmit = (e: React.FormEvent) => {

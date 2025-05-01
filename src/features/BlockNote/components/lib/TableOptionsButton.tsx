@@ -11,8 +11,23 @@ import {
   Rows3,
   ChevronDown,
 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export function TableOptionsButton({ editor }: { editor: Editor }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    // Add or remove the class on the toolbar when dropdown opens/closes
+    const toolbar = document.querySelector(".blocknote-toolbar");
+    if (toolbar) {
+      if (isOpen) {
+        toolbar.classList.add("is-dropdown-active");
+      } else {
+        toolbar.classList.remove("is-dropdown-active");
+      }
+    }
+  }, [isOpen]);
+
   // Check if we're inside or have selected a table
   const isTableActive = () => {
     return (
@@ -24,7 +39,7 @@ export function TableOptionsButton({ editor }: { editor: Editor }) {
   };
 
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenu.Trigger asChild>
         <button
           className={isTableActive() ? "is-active" : ""}

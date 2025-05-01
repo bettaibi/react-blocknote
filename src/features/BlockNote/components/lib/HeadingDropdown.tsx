@@ -10,10 +10,25 @@ import {
   Type,
   ChevronDown,
 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export function HeadingDropdown({ editor }: { editor: Editor }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    // Add or remove the class on the toolbar when dropdown opens/closes
+    const toolbar = document.querySelector(".blocknote-toolbar");
+    if (toolbar) {
+      if (isOpen) {
+        toolbar.classList.add("is-dropdown-active");
+      } else {
+        toolbar.classList.remove("is-dropdown-active");
+      }
+    }
+  }, [isOpen]);
+
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenu.Trigger asChild>
         <button
           className={editor.isActive("heading") ? "is-active" : ""}

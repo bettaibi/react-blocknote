@@ -521,8 +521,9 @@
   min-width: 200px;
 }
 
-/* Make the table button content align properly */
-.bubble-menu-dropdown-container .table-button-content {
+/* Make the dropdown buttons align properly in the bubble menu */
+.bubble-menu-dropdown-container .table-button-content,
+.bubble-menu-dropdown-container .heading-button-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -561,4 +562,17 @@
   float: left;
   height: 0;
   pointer-events: none;
+}
+
+/* Make the dropdown button content align properly */
+.table-button-content,
+.heading-button-content {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.dropdown-caret {
+  margin-left: 2px;
+  transform: translateY(1px);
 }

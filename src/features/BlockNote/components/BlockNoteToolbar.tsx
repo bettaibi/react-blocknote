@@ -2,12 +2,11 @@ import { Editor } from "@tiptap/react";
 import { ImageButton } from "./lib/ImageButton";
 import { LinkButton } from "./lib/LinkButton";
 import { TableOptionsButton } from "./lib/TableOptionsButton";
+import { HeadingDropdown } from "./lib/HeadingDropdown";
 import {
   Bold,
   Italic,
   Underline,
-  Heading1,
-  Heading2,
   List,
   ListOrdered,
   CheckSquare,
@@ -52,28 +51,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
         </button>
         <LinkButton editor={editor} />
         <ImageButton editor={editor} />
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 1 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 1 }) ? "is-active" : ""
-          }
-          title="Heading 1"
-        >
-          <Heading1 size={20} />
-        </button>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 2 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 2 }) ? "is-active" : ""
-          }
-          title="Heading 2"
-        >
-          <Heading2 size={20} />
-        </button>
+        <HeadingDropdown editor={editor} />
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={editor.isActive("bulletList") ? "is-active" : ""}

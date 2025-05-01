@@ -31,8 +31,7 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import { BlockNoteBubbleMenu } from "./BlockNoteBubbleMenu";
 import { htmlToMarkdown } from "../utils/htmlToMarkdown";
-import "highlight.js/styles/github.css";
-import "katex/dist/katex.min.css";
+import "../styles/external-styles.css";
 
 // Markdown parser with math support
 const md = new MarkdownIt({

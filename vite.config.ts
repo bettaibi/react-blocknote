@@ -17,6 +17,8 @@ export default defineConfig({
       fileName: (format) => `react-blocknote.${format}.js`,
     },
     cssCodeSplit: false, // Generate a single CSS file
+    cssMinify: "lightningcss", // Use lightningcss for better minification
+    minify: true, // Ensure minification is enabled
     rollupOptions: {
       external: ["react", "react-dom"],
       output: {
@@ -33,7 +35,13 @@ export default defineConfig({
           }
           return assetInfo.name || "";
         },
+        manualChunks: undefined, // Disable code splitting for library
       },
     },
+    sourcemap: false, // Disable sourcemaps in production build to reduce size
+  },
+  css: {
+    // Pre-process CSS with PostCSS
+    postcss: "./postcss.config.cjs",
   },
 });

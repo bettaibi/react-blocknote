@@ -14,6 +14,8 @@ import {
   AlignLeft,
   AlignCenter,
   AlignRight,
+  Undo,
+  Redo,
 } from "lucide-react";
 
 interface BlockNoteToolbarProps {
@@ -28,6 +30,20 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
   return (
     <div className="blocknote-toolbar">
       <div className="blocknote-toolbar-main">
+        <button
+          onClick={() => editor.chain().focus().undo().run()}
+          disabled={!editor.can().chain().focus().undo().run()}
+          title="Undo"
+        >
+          <Undo size={20} />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().redo().run()}
+          disabled={!editor.can().chain().focus().redo().run()}
+          title="Redo"
+        >
+          <Redo size={20} />
+        </button>
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={editor.isActive("bold") ? "is-active" : ""}

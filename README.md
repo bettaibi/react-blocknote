@@ -50,14 +50,31 @@ function MyEditor() {
   const [content, setContent] = useState("");
 
   return (
-    <BlockNote
-      value={content}
-      onChange={setContent}
-      placeholder="Start typing..."
-      outputFormat="html" // or "markdown"
-    />
+    // if you are using tailwind ensure adding prose classNames to the BlockNote wrapper
+    <div className="lg:prose-md prose h-full max-w-full">
+      <BlockNote
+        value={content}
+        onChange={setContent}
+        placeholder="Start typing..."
+        outputFormat="html" // or "markdown"
+      />
+    </div>
   );
 }
+```
+
+## Server-Side Rendering
+
+When using SSR frameworks like Next.js, dynamically import the editor component on client-side only.
+This prevents Next.js from trying to use the DOMParser API during server-side rendering, which was causing the "DOMParser is not defined" error
+
+```jsx
+import dynamic from "next/dynamic";
+
+const BlockNote = dynamic(
+  () => import("@bettaibi/react-blocknote").then((mod) => mod.BlockNote),
+  { ssr: false }
+);
 ```
 
 ## Props

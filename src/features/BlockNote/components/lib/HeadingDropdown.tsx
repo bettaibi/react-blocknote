@@ -31,6 +31,7 @@ export function HeadingDropdown({ editor }: { editor: Editor }) {
     <DropdownMenu.Root open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenu.Trigger asChild>
         <button
+          type="button"
           className={editor.isActive("heading") ? "is-active" : ""}
           title="Headings"
         >

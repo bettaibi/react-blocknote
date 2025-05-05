@@ -42,6 +42,7 @@ export function ImageButton({ editor }: { editor: Editor }) {
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger asChild>
         <button
+          type="button"
           className={editor.isActive("image") ? "is-active" : ""}
           title="Insert Image"
         >

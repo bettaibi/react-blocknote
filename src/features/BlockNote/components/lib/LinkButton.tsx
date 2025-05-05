@@ -47,6 +47,7 @@ export function LinkButton({ editor }: { editor: Editor }) {
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger asChild>
         <button
+          type="button"
           className={editor.isActive("link") ? "is-active" : ""}
           title="Insert Link"
         >

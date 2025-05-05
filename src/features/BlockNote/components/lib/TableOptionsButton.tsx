@@ -42,6 +42,7 @@ export function TableOptionsButton({ editor }: { editor: Editor }) {
     <DropdownMenu.Root open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenu.Trigger asChild>
         <button
+          type="button"
           className={isTableActive() ? "is-active" : ""}
           title="Table Options"
         >

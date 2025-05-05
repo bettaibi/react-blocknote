@@ -68,7 +68,7 @@ export function ImageButton({ editor }: { editor: Editor }) {
         >
           <div className="blocknote-popover-content">
             <h3 className="blocknote-popover-title">Insert Image</h3>
-            <form onSubmit={handleSubmit}>
+            <div>
               <div className="blocknote-form-field">
                 <label className="blocknote-form-label" htmlFor="image-url">
                   Image URL
@@ -106,13 +106,14 @@ export function ImageButton({ editor }: { editor: Editor }) {
                   Cancel
                 </button>
                 <button
-                  type="submit"
+                  type="button"
                   className="blocknote-form-button blocknote-form-button-submit"
+                  onClick={handleSubmit}
                 >
                   Insert Image
                 </button>
               </div>
-            </form>
+            </div>
           </div>
           <Popover.Arrow className="blocknote-popover-arrow" />
         </Popover.Content>

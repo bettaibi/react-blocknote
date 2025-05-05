@@ -73,7 +73,7 @@ export function LinkButton({ editor }: { editor: Editor }) {
         >
           <div className="blocknote-popover-content">
             <h3 className="blocknote-popover-title">Insert Link</h3>
-            <form onSubmit={handleSubmit}>
+            <div>
               <div className="blocknote-form-field">
                 <label className="blocknote-form-label" htmlFor="link-url">
                   URL
@@ -111,13 +111,14 @@ export function LinkButton({ editor }: { editor: Editor }) {
                   Cancel
                 </button>
                 <button
-                  type="submit"
+                  type="button"
+                  onClick={handleSubmit}
                   className="blocknote-form-button blocknote-form-button-submit"
                 >
                   Add Link
                 </button>
               </div>
-            </form>
+            </div>
           </div>
           <Popover.Arrow className="blocknote-popover-arrow" />
         </Popover.Content>

@@ -31,6 +31,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
     <div className="blocknote-toolbar">
       <div className="blocknote-toolbar-main">
         <button
+          type="button"
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editor.can().chain().focus().undo().run()}
           title="Undo"
@@ -38,6 +39,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
           <Undo size={20} />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().redo().run()}
           disabled={!editor.can().chain().focus().redo().run()}
           title="Redo"
@@ -45,6 +47,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
           <Redo size={20} />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={editor.isActive("bold") ? "is-active" : ""}
           title="Bold"
@@ -52,6 +55,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
           <Bold size={20} />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className={editor.isActive("italic") ? "is-active" : ""}
           title="Italic"
@@ -59,6 +63,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
           <Italic size={20} />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           className={editor.isActive("underline") ? "is-active" : ""}
           title="Underline"
@@ -69,6 +74,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
         <ImageButton editor={editor} />
         <HeadingDropdown editor={editor} />
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={editor.isActive("bulletList") ? "is-active" : ""}
           title="Bullet List"
@@ -76,6 +82,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
           <List size={20} />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
           className={editor.isActive("orderedList") ? "is-active" : ""}
           title="Ordered List"
@@ -83,6 +90,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
           <ListOrdered size={20} />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleTaskList().run()}
           className={editor.isActive("taskList") ? "is-active" : ""}
           title="Task List"
@@ -90,6 +98,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
           <CheckSquare size={20} />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
           className={editor.isActive("codeBlock") ? "is-active" : ""}
           title="Code Block"
@@ -97,6 +106,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
           <Code size={20} />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign("left").run()}
           className={editor.isActive({ textAlign: "left" }) ? "is-active" : ""}
           title="Align Left"
@@ -104,6 +114,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
           <AlignLeft size={20} />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign("center").run()}
           className={
             editor.isActive({ textAlign: "center" }) ? "is-active" : ""
@@ -113,6 +124,7 @@ export function BlockNoteToolbar({ editor }: BlockNoteToolbarProps) {
           <AlignCenter size={20} />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign("right").run()}
           className={editor.isActive({ textAlign: "right" }) ? "is-active" : ""}
           title="Align Right"

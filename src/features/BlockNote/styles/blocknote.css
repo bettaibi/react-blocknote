@@ -134,16 +134,17 @@
 }
 
 .ProseMirror code {
-  background-color: #f0f0f0;
+  background-color: transparent;
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-family: monospace;
 }
 
 .ProseMirror pre {
-  background-color: #f0f0f0;
+  background-color: transparent;
   padding: 1em;
-  border-radius: 4px;
+  border-radius: 6px;
+  border: 1px solid #e3e8ef;
   overflow-x: auto;
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { BlockNote } from "../features/BlockNote/components/BlockNote";
 
-export const Example: React.FC = () => {
+export const Example = () => {
   const [value, setValue] = React.useState("");
 
   return (

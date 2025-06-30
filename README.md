@@ -36,6 +36,13 @@ npm install @radix-ui/react-dropdown-menu@2.1.12 @radix-ui/react-popover@1.1.11 
 
 This approach minimizes the number of peer dependencies while maintaining an optimal package size.
 
+### React Version Compatibility
+
+React BlockNote supports both React 18 and React 19. The package is designed to work seamlessly with either version without any breaking changes.
+
+- **React 18**: Full support with all features
+- **React 19**: Full support with all features, including the latest React improvements
+
 ### Bundle Size Optimization
 
 For detailed information on how to optimize the bundle size and performance of React BlockNote in your application, please refer to our [Optimization Guide](./OPTIMIZATION.md).
@@ -127,7 +134,7 @@ Easily add links and images with a clean, accessible UI.
 
 ## Requirements
 
-- React 18.0.0 or higher
+- React 18.0.0 or higher (supports both React 18 and 19)
 - Node.js 18.0.0 or higher
 
 ## Credits

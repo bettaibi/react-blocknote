@@ -15,9 +15,7 @@ interface BlockNoteBubbleMenuProps {
   editor: Editor | null;
 }
 
-export const BlockNoteBubbleMenu: React.FC<BlockNoteBubbleMenuProps> = ({
-  editor,
-}) => {
+export const BlockNoteBubbleMenu = ({ editor }: BlockNoteBubbleMenuProps) => {
   if (!editor) {
     return null;
   }

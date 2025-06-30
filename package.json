@@ -37,8 +37,8 @@
     "@radix-ui/react-dropdown-menu": "2.1.12",
     "@radix-ui/react-popover": "1.1.11",
     "katex": "0.16.22",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "keywords": [
     "react",
@@ -61,7 +61,7 @@
   ],
   "author": "Nidhal Bettaibi",
   "license": "MIT",
-  "description": "A modern, versatile rich text editor component for React applications with an elegant UI and Notion-like functionality",
+  "description": "A modern, versatile rich text editor component for React applications with an elegant UI and Notion-like functionality. Supports both React 18 and React 19.",
   "dependencies": {
     "@tiptap/extension-code-block-lowlight": "2.11.9",
     "@tiptap/extension-color": "2.11.7",
@@ -102,8 +102,8 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@types/highlight.js": "9.12.4",
     "@types/node": "^22.15.3",
-    "@types/react": "19.1.2",
-    "@types/react-dom": "19.1.2",
+    "@types/react": "^18.0.0 || ^19.0.0",
+    "@types/react-dom": "^18.0.0 || ^19.0.0",
     "@types/turndown": "^5.0.5",
     "@vitejs/plugin-react": "4.4.1",
     "autoprefixer": "^10.4.21",

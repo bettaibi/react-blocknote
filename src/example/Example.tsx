@@ -1,8 +1,8 @@
-import React from "react";
+import { useState } from "react";
 import { BlockNote } from "../features/BlockNote/components/BlockNote";
 
 export const Example = () => {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = useState("");
 
   return (
     <div style={{ maxWidth: "800px", margin: "2rem auto", padding: "0 1rem" }}>

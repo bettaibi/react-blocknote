@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, MouseEvent } from "react";
 import { Editor } from "@tiptap/react";
 import { Link } from "lucide-react";
 import * as Popover from "@radix-ui/react-popover";
@@ -28,7 +28,7 @@ export function LinkButton({ editor }: { editor: Editor }) {
     }
   }, [open]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (url) {
       editor

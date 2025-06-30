@@ -41,7 +41,9 @@ This approach minimizes the number of peer dependencies while maintaining an opt
 React BlockNote supports both React 18 and React 19. The package is designed to work seamlessly with either version without any breaking changes.
 
 - **React 18**: Full support with all features
-- **React 19**: Full support with all features, including the latest React improvements
+- **React 19**: Full support with all features, including the latest React improvements and concurrent features
+
+> **Note**: For React 19 users, the package has been specifically tested and optimized to work with Next.js 15 and other React 19 applications. All React-specific imports and type references have been updated for maximum compatibility.
 
 ### Bundle Size Optimization
 

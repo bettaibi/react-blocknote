@@ -9,7 +9,6 @@ export function ImageButton({ editor }: { editor: Editor }) {
   const [open, setOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Focus the URL input when the popover opens
   useEffect(() => {
     if (open && inputRef.current) {
       setTimeout(() => {
@@ -17,7 +16,6 @@ export function ImageButton({ editor }: { editor: Editor }) {
       }, 100);
     }
 
-    // Add or remove the class on the toolbar when popover opens/closes
     const toolbar = document.querySelector(".blocknote-toolbar");
     if (toolbar) {
       if (open) {

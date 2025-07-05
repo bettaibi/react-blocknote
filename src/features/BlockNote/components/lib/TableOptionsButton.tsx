@@ -17,7 +17,6 @@ export function TableOptionsButton({ editor }: { editor: Editor }) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Add or remove the class on the toolbar when dropdown opens/closes
     const toolbar = document.querySelector(".blocknote-toolbar");
     if (toolbar) {
       if (isOpen) {
@@ -28,7 +27,6 @@ export function TableOptionsButton({ editor }: { editor: Editor }) {
     }
   }, [isOpen]);
 
-  // Check if we're inside or have selected a table
   const isTableActive = () => {
     return (
       editor.isActive("table") ||

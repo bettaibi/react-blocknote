@@ -22,9 +22,12 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+        atomic: resolve(__dirname, "src/atomic.ts"),
+      },
       name: "ReactBlocknote",
-      fileName: (format) => `react-blocknote.${format}.js`,
+      fileName: (format, entryName) => `${entryName}.${format}.js`,
     },
     cssCodeSplit: false, // Generate a single CSS file
     cssMinify: "lightningcss", // Use lightningcss for better minification

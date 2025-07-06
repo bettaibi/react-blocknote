@@ -6,13 +6,18 @@
     "dist"
   ],
   "types": "./dist/index.d.ts",
-  "main": "./dist/react-blocknote.umd.js",
-  "module": "./dist/react-blocknote.es.js",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/react-blocknote.es.js",
-      "require": "./dist/react-blocknote.umd.js"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    },
+    "./atomic": {
+      "types": "./dist/atomic.d.ts",
+      "import": "./dist/atomic.es.js",
+      "require": "./dist/atomic.umd.js"
     },
     "./styles.css": "./dist/style.css"
   },

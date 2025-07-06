@@ -7,6 +7,19 @@ import { BoldButton } from "../features/BlockNote/components/atomic/BoldButton";
 import { ItalicButton } from "../features/BlockNote/components/atomic/ItalicButton";
 import { H1Button } from "../features/BlockNote/components/atomic/H1Button";
 import { NormalTextButton } from "../features/BlockNote/components/atomic/NormalTextButton";
+import { UndoButton } from "../features/BlockNote/components/atomic/UndoButton";
+import { useBlockNoteHandlers } from "../features/BlockNote/hooks/useBlockNoteHandlers";
+import { useBlockNoteValues } from "../features/BlockNote/hooks/useBlockNoteValues";
+
+function CustomRedoButton() {
+  const { handleRedo } = useBlockNoteHandlers();
+  const { canRedo } = useBlockNoteValues();
+  return (
+    <button onClick={handleRedo} disabled={!canRedo}>
+      Redo
+    </button>
+  );
+}
 
 export const Example = () => {
   const [value, setValue] = useState("");
@@ -65,7 +78,8 @@ export const Example = () => {
                   gap: "1rem",
                 }}
               >
-                kkkkdkdk
+                <UndoButton />
+                <CustomRedoButton />
               </div>
             </div>
           </BlockNoteProvider>

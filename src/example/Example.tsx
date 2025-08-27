@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BlockNote } from "../features/BlockNote/components/BlockNote";
-import { BlockNoteProvider } from "../features/BlockNote/providers/blockNoteProvider";
+import { BlockNoteProvider } from "../features/BlockNote/providers/BlockNoteProvider";
 import { BlockNoteContent } from "../features/BlockNote/components/atomic/BlockNoteContent";
 import { BubbleMenu } from "../features/BlockNote/components/atomic/BubbleMenu";
 import { BoldButton } from "../features/BlockNote/components/atomic/BoldButton";

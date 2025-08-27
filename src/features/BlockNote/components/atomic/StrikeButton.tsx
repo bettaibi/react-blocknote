@@ -1,5 +1,5 @@
 import { Strikethrough } from "lucide-react";
-import { useBlockNoteContext } from "../../providers/blockNoteProvider";
+import { useBlockNoteContext } from "../../providers/BlockNoteProvider";
 import { ButtonHTMLAttributes } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {

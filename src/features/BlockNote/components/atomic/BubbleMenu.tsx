@@ -1,5 +1,5 @@
 import { BubbleMenuProps, BubbleMenu as TipTapBubbleMenu } from "@tiptap/react";
-import { useBlockNoteContext } from "../../providers/blockNoteProvider";
+import { useBlockNoteContext } from "../../providers/BlockNoteProvider";
 
 export function BubbleMenu({
   children,

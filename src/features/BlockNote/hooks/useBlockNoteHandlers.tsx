@@ -1,4 +1,4 @@
-import { useBlockNoteContext } from "../providers/blockNoteProvider";
+import { useBlockNoteContext } from "../providers/BlockNoteProvider";
 
 export function useBlockNoteHandlers() {
   const editor = useBlockNoteContext();

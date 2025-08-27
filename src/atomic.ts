@@ -40,12 +40,6 @@ export { RedoButton } from "./features/BlockNote/components/atomic/RedoButton";
 export { useBlockNoteHandlers } from "./features/BlockNote/hooks/useBlockNoteHandlers";
 export { useBlockNoteValues } from "./features/BlockNote/hooks/useBlockNoteValues";
 
-// Provider for atomic components
-export { BlockNoteProvider } from "./features/BlockNote/providers/blockNoteProvider";
-
-// Types
-export type { BlockNoteProviderProps } from "./features/BlockNote/providers/blockNoteProvider";
-
 // Import styles for atomic components
 import "./features/BlockNote/styles/external-styles.css";
 import "./features/BlockNote/styles/blocknote.css";

@@ -4,7 +4,7 @@ import { EditorContent } from "@tiptap/react";
 import { BlockNoteToolbar } from "./BlockNoteToolbar";
 
 import { BlockNoteBubbleMenu } from "./BlockNoteBubbleMenu";
-import { useBlockNoteContext } from "../providers/blockNoteProvider";
+import { useBlockNoteContext } from "../providers/BlockNoteProvider";
 
 export interface BlockNoteProps {
   className?: string;
@@ -18,6 +18,10 @@ export function BlockNote({
   showBubbleMenu = true,
 }: BlockNoteProps) {
   const editor = useBlockNoteContext();
+
+  if (!editor) {
+    return null;
+  }
 
   return (
     <div className={`blocknote-editor ${className}`}>

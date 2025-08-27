@@ -3,7 +3,7 @@
  * based on the current state of the editor.
  */
 
-import { useBlockNoteContext } from "../providers/blockNoteProvider";
+import { useBlockNoteContext } from "../providers/BlockNoteProvider";
 
 enum BlockNoteMark {
   // Text formatting marks

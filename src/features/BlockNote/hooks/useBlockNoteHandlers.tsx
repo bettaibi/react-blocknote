@@ -98,11 +98,11 @@ export function useBlockNoteHandlers() {
 
   // Media handlers
   function handleImage({ src, alt = "" }: { src: string; alt?: string }) {
-    editor.chain().focus().setImage({ src, alt }).run();
+    editor?.chain().focus().setImage({ src, alt }).run();
   }
 
   function handleLink(href: string) {
-    editor.chain().focus().extendMarkRange("link").setLink({ href }).run();
+    editor?.chain().focus().extendMarkRange("link").setLink({ href }).run();
   }
 
   // Table handlers

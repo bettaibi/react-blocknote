@@ -1,6 +1,6 @@
 // Export the main BlockNote component for regular usage
-export { BlockNote } from "./features/BlockNote/components/BlockNote";
 export { BlockNoteProvider } from "./features/BlockNote/providers/blockNoteProvider";
+export { BlockNote } from "./features/BlockNote/components/BlockNote";
 
 // Types for regular usage
 export type { BlockNoteProps } from "./features/BlockNote/components/BlockNote";

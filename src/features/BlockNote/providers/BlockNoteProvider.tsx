@@ -125,6 +125,7 @@ export function BlockNoteProvider({
       TableCell,
       TableHeader,
     ],
+    immediatelyRender: false,
     content:
       outputFormat === "markdown"
         ? value.includes("$")
@@ -183,6 +184,10 @@ export function BlockNoteProvider({
     },
     ...editorOptions,
   });
+
+  if (!editor) {
+    return null;
+  }
 
   return (
     <BlockNoteContext.Provider value={editor}>

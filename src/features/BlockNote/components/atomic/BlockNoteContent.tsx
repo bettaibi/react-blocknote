@@ -3,5 +3,10 @@ import { useBlockNoteContext } from "../../providers/blockNoteProvider";
 
 export function BlockNoteContent({ className = "" }: { className?: string }) {
   const editor = useBlockNoteContext();
+
+  if (!editor) {
+    return null;
+  }
+
   return <EditorContent editor={editor} className={className} />;
 }
